@@ -1,13 +1,13 @@
-package com.example.musicadvisor;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-class MusicAdvisorApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-}
+//package com.example.musicadvisor;
+//
+//import org.junit.jupiter.api.Test;
+//import org.springframework.boot.test.context.SpringBootTest;
+//
+//@SpringBootTest
+//class MusicAdvisorApplicationTests {
+//
+//	@Test
+//	void contextLoads() {
+//	}
+//
+//}
