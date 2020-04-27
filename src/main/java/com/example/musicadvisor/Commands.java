@@ -1,10 +1,17 @@
 package com.example.musicadvisor;
 
+import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellComponent;
+import org.springframework.shell.standard.ShellMethodAvailability;
 
 @ShellComponent
 public class Commands {
+
+    private boolean isAuthenticated;
+    static final String REDIRECT_URI = "http://localhost:8080&response_type=code";
+    String spotifyAccessUrl = "https://accounts.spotify.com/authorize?client_id=a4f9b3eabff748268a31f77116a996d9&redirect_uri=" +
+            REDIRECT_URI;
 
     /**
      * List of new albums with artists and links on Spotify.
@@ -76,5 +83,29 @@ public class Commands {
         playlists.append("Sunday Stroll\n");
 
         return playlists.toString();
+    }
+
+    /**
+     * Checks if user is authenticated before using the application.
+     *
+     * @return boolean
+     */
+    @ShellMethodAvailability({"new", "featured", "categories", "playlists"})
+    public Availability availabilityCheck() {
+        return isAuthenticated
+                ? Availability.available()
+                : Availability.unavailable("Please, provide access for application.");
+    }
+
+    /**
+     * Authenticates new user to be able to use the application.
+     *
+     * @return String
+     */
+    @ShellMethod("Authenticates new user.")
+    public String auth() {
+        // Hardcoded for now
+        isAuthenticated = true;
+        return this.spotifyAccessUrl + "\n---SUCCESS---\n";
     }
 }
